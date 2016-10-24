@@ -17,6 +17,7 @@ sudo apt-get -y install python-pip
 sudo pip install docker-compose
 
 #add docker to su group
+sudo groupadd docker
 sudo usermod -aG docker vagrant
 
 #start docker
