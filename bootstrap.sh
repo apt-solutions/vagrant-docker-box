@@ -1,12 +1,11 @@
 !/usr/bin/env bash
 
-chmod +x bootstrap.sh
 # Use single quotes instead of double quotes to make it work with special-character passwords
 PROJECTFOLDER='docker'
 
 # create project folder
-sudo mkdir "${PROJECTFOLDER}"
 sudo mkdir "${PROJECTFOLDER}/wordpress1"
+
 
 # update / upgrade
 sudo apt-get update

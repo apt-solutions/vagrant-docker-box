@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, path: "bootstrap.sh"
   # Create a private network, which allows host-only access to the machine using a specific IP.
   config.vm.network "private_network", ip: "192.168.33.22"
-  config.vm.synced_folder "docker/", "/docker"
+  config.vm.synced_folder "docker/", "/home/vagrant/docker"
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
