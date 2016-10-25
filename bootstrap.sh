@@ -21,7 +21,7 @@ sudo groupadd docker
 sudo usermod -aG docker vagrant
 
 #start docker
-service docker start
+sudo service docker start
 
 #start wordpress instance
 cd ${PROJECTFOLDER}/wordpress1
