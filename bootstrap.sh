@@ -3,16 +3,18 @@
 # Use single quotes instead of double quotes to make it work with special-character passwords
 PROJECTFOLDER='docker'
 
-# create project folder
-sudo mkdir "${PROJECTFOLDER}/wordpress1"
-
 # update / upgrade
 sudo apt-get update
 sudo apt-get -y upgrade
 sudo apt-get -y install linux-image-extra-$(uname -r) linux-image-extra-virtual
 
 #install docker
-curl -s https://get.docker.com | sudo sh
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+sudo apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main'
+sudo apt-get update
+apt-cache policy docker-engine
+
+#install docker compose
 sudo apt-get -y install python-pip
 sudo pip install docker-compose
 
