@@ -12,3 +12,5 @@ https://github.com/winnfsd/vagrant-winnfsd
 docker compose provisioner
 https://github.com/leighmcculloch/vagrant-docker-compose
 `vagrant plugin install vagrant-docker-compose`
+
+run http://192.168.33.22:8080/containers/ for stats
