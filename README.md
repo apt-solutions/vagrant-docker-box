@@ -1,8 +1,14 @@
 # vagrant-docker-box
 A Vagrant box with docker preinstalled
 
-includes ubuntu trusty 64 / docker / docker compose
+uses https://github.com/William-Yeh/docker-enabled-vagrant as basebox with docker preinstalled
 
-vagrant ssh credentials:
-  user: vagrant
-  pwd: vagrant
+requires the following plugins
+
+windows nfs compatibility
+https://github.com/winnfsd/vagrant-winnfsd
+`$ vagrant plugin install vagrant-winnfsd`
+
+docker compose provisioner
+https://github.com/leighmcculloch/vagrant-docker-compose
+`vagrant plugin install vagrant-docker-compose`
