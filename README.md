@@ -1,4 +1,4 @@
-# vagrant-docker-box
+# vagrant-out-of-the-box#1
 A Vagrant box with docker preinstalled
 
 uses https://github.com/William-Yeh/docker-enabled-vagrant as basebox with docker preinstalled
