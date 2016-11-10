@@ -1,6 +1,6 @@
 [mysqld]
 
-key_buffer                 = 16k
+key_buffer_size            = 16k
 max_allowed_packet         = 16k
 thread_stack               = 192K
 thread_cache_size          = 1
