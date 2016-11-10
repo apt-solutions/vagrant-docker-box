@@ -4,6 +4,8 @@ wpurl=$1
 searchstring="{{{wordpress_siteurl}}}"
 searchfile="./.data/wordpress/wp-config.php"
 
+chown -R www-data:www-data ./.data/wordpress
+
 # i am not sure why but sometimes the replacement of the wordpress config parameters fails
 # in this case just sleep 1 second and try again.
 # i think this is due to docker-compose need a moment or so to setup/bind the volumes ...
