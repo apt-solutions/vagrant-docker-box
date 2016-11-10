@@ -2,10 +2,13 @@
 
 # read last used port from file
 port=$(<./../lastusedport)
+retryPortsCount=200
+minPortNum=31700
+maxPortNum=34000
 
 if [ -z "$port" ]; then
   # begin if .lastusedport does not exist
-  port=32700
+  port="$minPortNum"
 fi
 
 i=0
@@ -14,6 +17,11 @@ while
 
   # TODO we need to roundtrip ports, we can not increase infinitely
   port="$((port+1))"
+
+  # roundtrip port number
+  if [ "$port" -ge "$maxPortNum" ]; then
+    port="$maxPortNum"
+  fi
 
   # return process id for the given port if exists
   portpid=`lsof -t -P -i :$port;`
@@ -29,7 +37,7 @@ while
   fi
 
   # prevent endless loops!
-  if [ "$i" -ge 100 ]; then
+  if [ "$i" -ge "$retryPortsCount" ]; then
     # reset port to empty string indicating error (no usable open port found)
     port=""
     break
