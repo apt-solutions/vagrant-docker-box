@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
-# read last used port from file
-port=$(<./../lastusedport)
+# How often will we increase the port to find a free one?
 retryPortsCount=200
+
+# Try to find ports in this range only
 minPortNum=31700
 maxPortNum=34000
+
+# read last used port from file
+port=$(<./../lastusedport)
 
 if [ -z "$port" ]; then
   # begin if .lastusedport does not exist
@@ -13,12 +17,12 @@ fi
 
 i=0
 while
+  # i++
   i="$((i+1))"
-
-  # TODO we need to roundtrip ports, we can not increase infinitely
+  # port++
   port="$((port+1))"
 
-  # roundtrip port number
+  # roundtrip ports
   if [ "$port" -ge "$maxPortNum" ]; then
     port="$maxPortNum"
   fi
@@ -51,12 +55,12 @@ if [ -n "$port" ]; then
   # update docker-compose.yaml. set this very port
   sudo sed -i "s#{{{publicport}}}#$port#g" ./docker-compose.yaml
 
-  # redirect outputs to "bash.log"
+  # set up docker containers with docker compose, redirect outputs to "bash.log"
   docker-compose up -d --no-recreate > ./bash.log 2>&1
 
-  # composer outputs lines with "ERROR:" in case of something went wrong
+  # docker-compose outputs lines with "ERROR:" in case of something went wrong
   # search for this in the bash.log file.
-  # if exists output the log file to throw the error to the caller
+  # if exists output the log file to "throw" the error
   errors=$(cat ./bash.log | grep ERROR:)
   if [ -n "$errors" ]; then
     cat ./bash.log
